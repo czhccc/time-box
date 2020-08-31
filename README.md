@@ -1,5 +1,5 @@
 # time-box
-时光盒子H5
+时光盒子H5，Vue + Vant
 
 ## Project setup
 ```
