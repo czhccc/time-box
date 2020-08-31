@@ -1,32 +1,41 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div id='app'>
+    <keep-alive>
+      <router-view />
+    </keep-alive>
+    <TabBar v-if="$route.meta.notTabBar" />
   </div>
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+  import TabBar from "components/content/tabBar/TabBar.vue"
 
-#nav {
-  padding: 30px;
+  import {flexible} from "../static/js/flexible.js"
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+  export default {
+    name: 'name',
+    components: {
+      TabBar
+    },
+    beforeCreate() {
+      flexible(window, document);
     }
   }
-}
+</script>
+
+<style scoped lang="less">
+  @import "assets/css/base.css";
+
+  body {
+    min-width: 320px;
+    max-width: 750px;
+  }
+
+  // 约束当屏幕大于750px 的时候，htmL字体大小就不不变化了
+  @media screen and ( min-width: 750px) {
+    html {
+      font-size: 37.5px !important;
+    }
+  }
+
 </style>
